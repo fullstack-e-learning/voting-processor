@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: @project.artifactId@
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/mydatabase}
+    username: ${DB_USERNAME:myuser}
+    password: ${DB_PASSWORD:secret}
+  data:
+    redis:
+      #host: ${REDIS_HOST:localhost}
+      #port: ${REDIS_PORT:6379}
+      #password:
+      #username:
+      url: ${REDIS_URL:redis://localhost:6379}
+      channel-name: ${REDIS_CHANNEL_NAME:channel}
+server:
+  port: 8081
+
+management:
+  health:
+    redis:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
