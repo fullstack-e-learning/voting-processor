@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -20,6 +21,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.repository.ListCrudRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -57,7 +59,7 @@ record Vote(String id, String optionId) {}
 
 @Table("votes")
 record Votes(@Id Long id, @Column("option_id") String optionId, @Column("user_id") String userId, @Column("created_at") LocalDateTime createdAt) {}
-interface VotesRepository extends ListCrudRepository<Votes, Long> {}
+interface VotesRepository extends ListCrudRepository<Votes, Long> { }
 
 @Configuration
 class RedisConfig {
